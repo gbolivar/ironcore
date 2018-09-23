@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://gestionComercial.servicios.ws.core.server.na" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ax2171="http://persistencia.clases.modelo.ws.auto.server.na/xsd" xmlns:ax2173="http://renglones.documentacion.clases.modelo.ws.auto.server.na/xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ax2164="http://excepciones.core.shared.na/xsd" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ax2165="http://fachada.servicios.core.shared.na/xsd" xmlns:ax2176="http://valores.clases.modelo.ws.auto.server.na/xsd" xmlns:ax2166="http://constantes.vista.core.shared.na/xsd" xmlns:ax2180="http://comerciales.documentacion.clases.modelo.ws.auto.server.na/xsd" xmlns:ax2170="http://gestionComercial.servicios.ws.core.server.na/xsd" xmlns:ax2181="http://documentacion.clases.modelo.ws.auto.server.na/xsd" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://gestionComercial.servicios.ws.core.server.na">
+    <wsdl:documentation>WebServiceDeGestionComercial</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns:ax2184="http://documentacion.clases.modelo.ws.auto.server.na/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://comerciales.documentacion.clases.modelo.ws.auto.server.na/xsd">
+            <xs:import namespace="http://documentacion.clases.modelo.ws.auto.server.na/xsd"/>
+            <xs:complexType name="DocumentoComercialWS">
+                <xs:complexContent>
+                    <xs:extension base="ax2184:DocumentoWS">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax2167="http://constantes.vista.core.shared.na/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://fachada.servicios.core.shared.na/xsd">
+            <xs:import namespace="http://constantes.vista.core.shared.na/xsd"/>
+            <xs:complexType name="MensajeDePresentacion">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="codigo" type="xs:int"/>
+                    <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descripcionTecnica" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descripcionTecnicaInicializado" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="solucion" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tipoDeMensaje" nillable="true" type="ax2166:TipoDeMensaje"/>
+                    <xs:element minOccurs="0" name="titulo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="urlAyuda" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax2174="http://persistencia.clases.modelo.ws.auto.server.na/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://renglones.documentacion.clases.modelo.ws.auto.server.na/xsd">
+            <xs:import namespace="http://persistencia.clases.modelo.ws.auto.server.na/xsd"/>
+            <xs:complexType name="RenglonDetalladoWS">
+                <xs:complexContent>
+                    <xs:extension base="ax2171:EntidadPersistenteWS">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="cantidadDeUnidades" type="xs:double"/>
+                            <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax2172="http://persistencia.clases.modelo.ws.auto.server.na/xsd" xmlns:ax2175="http://renglones.documentacion.clases.modelo.ws.auto.server.na/xsd" xmlns:ax2178="http://valores.clases.modelo.ws.auto.server.na/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://gestionComercial.servicios.ws.core.server.na/xsd">
+            <xs:import namespace="http://persistencia.clases.modelo.ws.auto.server.na/xsd"/>
+            <xs:import namespace="http://renglones.documentacion.clases.modelo.ws.auto.server.na/xsd"/>
+            <xs:import namespace="http://valores.clases.modelo.ws.auto.server.na/xsd"/>
+            <xs:complexType name="ResumenDeDocumentoComercialWS">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cuit" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="idDePuntoDeVenta" nillable="true" type="ax2171:IDCompuestoWS"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="renglonesDetallados" nillable="true" type="ax2173:RenglonDetalladoWS"/>
+                    <xs:element minOccurs="0" name="totalPrecalculado" nillable="true" type="ax2176:ValorMonetarioWS"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://persistencia.clases.modelo.ws.auto.server.na/xsd">
+            <xs:complexType name="ObjetoWS">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="IDCompuestoWS">
+                <xs:complexContent>
+                    <xs:extension base="ax2171:ObjetoWS">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="id" nillable="true" type="xs:long"/>
+                            <xs:element minOccurs="0" name="idDeServidor" nillable="true" type="xs:long"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="EntidadPersistenteWS">
+                <xs:complexContent>
+                    <xs:extension base="ax2171:ObjetoWS">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="bajaLogica" nillable="true" type="xs:date"/>
+                            <xs:element minOccurs="0" name="idCompuesto" nillable="true" type="ax2171:IDCompuestoWS"/>
+                            <xs:element minOccurs="0" name="idUniversal" nillable="true" type="xs:long"/>
+                            <xs:element minOccurs="0" name="ordinal" nillable="true" type="xs:long"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax2179="http://gestionComercial.servicios.ws.core.server.na/xsd" xmlns:ax2169="http://excepciones.core.shared.na/xsd" xmlns:ax2185="http://comerciales.documentacion.clases.modelo.ws.auto.server.na/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://gestionComercial.servicios.ws.core.server.na">
+            <xs:import namespace="http://excepciones.core.shared.na/xsd"/>
+            <xs:import namespace="http://gestionComercial.servicios.ws.core.server.na/xsd"/>
+            <xs:import namespace="http://comerciales.documentacion.clases.modelo.ws.auto.server.na/xsd"/>
+            <xs:element name="WebServiceDeGestionComercialExcepcionGeneral">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="ExcepcionGeneral" nillable="true" type="ax2169:ExcepcionGeneral"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="generarFacturaDeVenta">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="sesionDeTicketDeAcceso" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="versionDelCliente" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="resumenDeDocumentoComercialWS" nillable="true" type="ax2179:ResumenDeDocumentoComercialWS"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="generarFacturaDeVentaResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax2185:DocumentoComercialWS"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://constantes.vista.core.shared.na/xsd">
+            <xs:complexType name="TipoDeMensaje">
+                <xs:complexContent>
+                    <xs:extension base="xs:Enum">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax2182="http://persistencia.clases.modelo.ws.auto.server.na/xsd" xmlns:ax2183="http://valores.clases.modelo.ws.auto.server.na/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://documentacion.clases.modelo.ws.auto.server.na/xsd">
+            <xs:import namespace="http://persistencia.clases.modelo.ws.auto.server.na/xsd"/>
+            <xs:import namespace="http://valores.clases.modelo.ws.auto.server.na/xsd"/>
+            <xs:complexType name="DocumentoWS">
+                <xs:complexContent>
+                    <xs:extension base="ax2171:EntidadPersistenteWS">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="codigoDeAutorizacion" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="numero" nillable="true" type="ax2181:NumeroDeDocumentoWS"/>
+                            <xs:element minOccurs="0" name="totalPreCalculado" nillable="true" type="ax2183:ValorMonetarioWS"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="NumeroDeDocumentoWS">
+                <xs:complexContent>
+                    <xs:extension base="ax2171:ObjetoWS">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="numero" type="xs:long"/>
+                            <xs:element minOccurs="0" name="prefijo" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax2168="http://fachada.servicios.core.shared.na/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://excepciones.core.shared.na/xsd">
+            <xs:import namespace="http://fachada.servicios.core.shared.na/xsd"/>
+            <xs:complexType name="ExcepcionGeneral">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="errores" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="mensaje" nillable="true" type="ax2168:MensajeDePresentacion"/>
+                    <xs:element minOccurs="0" name="mensajeOriginal" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax2177="http://persistencia.clases.modelo.ws.auto.server.na/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://valores.clases.modelo.ws.auto.server.na/xsd">
+            <xs:import namespace="http://persistencia.clases.modelo.ws.auto.server.na/xsd"/>
+            <xs:complexType name="ValorMonetarioWS">
+                <xs:complexContent>
+                    <xs:extension base="ax2171:ObjetoWS">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="moneda" nillable="true" type="ax2176:MonedaWS"/>
+                            <xs:element minOccurs="0" name="monto" type="xs:double"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MonedaWS">
+                <xs:complexContent>
+                    <xs:extension base="ax2171:EntidadPersistenteWS">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="simbolo" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="generarFacturaDeVentaRequest">
+        <wsdl:part name="parameters" element="ns:generarFacturaDeVenta"/>
+    </wsdl:message>
+    <wsdl:message name="generarFacturaDeVentaResponse">
+        <wsdl:part name="parameters" element="ns:generarFacturaDeVentaResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WebServiceDeGestionComercialExcepcionGeneral">
+        <wsdl:part name="parameters" element="ns:WebServiceDeGestionComercialExcepcionGeneral"/>
+    </wsdl:message>
+    <wsdl:portType name="WebServiceDeGestionComercialPortType">
+        <wsdl:operation name="generarFacturaDeVenta">
+            <wsdl:input message="ns:generarFacturaDeVentaRequest" wsaw:Action="urn:generarFacturaDeVenta"/>
+            <wsdl:output message="ns:generarFacturaDeVentaResponse" wsaw:Action="urn:generarFacturaDeVentaResponse"/>
+            <wsdl:fault message="ns:WebServiceDeGestionComercialExcepcionGeneral" name="WebServiceDeGestionComercialExcepcionGeneral" wsaw:Action="urn:generarFacturaDeVentaWebServiceDeGestionComercialExcepcionGeneral"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="WebServiceDeGestionComercialSoap11Binding" type="ns:WebServiceDeGestionComercialPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="generarFacturaDeVenta">
+            <soap:operation soapAction="urn:generarFacturaDeVenta" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="WebServiceDeGestionComercialExcepcionGeneral">
+                <soap:fault use="literal" name="WebServiceDeGestionComercialExcepcionGeneral"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="WebServiceDeGestionComercialSoap12Binding" type="ns:WebServiceDeGestionComercialPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="generarFacturaDeVenta">
+            <soap12:operation soapAction="urn:generarFacturaDeVenta" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="WebServiceDeGestionComercialExcepcionGeneral">
+                <soap12:fault use="literal" name="WebServiceDeGestionComercialExcepcionGeneral"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="WebServiceDeGestionComercialHttpBinding" type="ns:WebServiceDeGestionComercialPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="generarFacturaDeVenta">
+            <http:operation location="generarFacturaDeVenta"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WebServiceDeGestionComercial">
+        <wsdl:port name="WebServiceDeGestionComercialHttpSoap11Endpoint" binding="ns:WebServiceDeGestionComercialSoap11Binding">
+            <soap:address location="http://gestion.IRONlions.com/nexus/ws/WebServiceDeGestionComercial.WebServiceDeGestionComercialHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="WebServiceDeGestionComercialHttpSoap12Endpoint" binding="ns:WebServiceDeGestionComercialSoap12Binding">
+            <soap12:address location="http://gestion.IRONlions.com/nexus/ws/WebServiceDeGestionComercial.WebServiceDeGestionComercialHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="WebServiceDeGestionComercialHttpEndpoint" binding="ns:WebServiceDeGestionComercialHttpBinding">
+            <http:address location="http://gestion.IRONlions.com/nexus/ws/WebServiceDeGestionComercial.WebServiceDeGestionComercialHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

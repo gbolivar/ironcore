@@ -1,0 +1,25 @@
+{
+  "name":"gbolivar/hornero",
+  "description":"Arquitectura de sistema que permite desarrollar otros sistemas una arquitectura poderosa para crear aplicativos usado PHP",
+  "autoload": {
+    "psr-4": {
+      "IRON\\": "lib/",
+      "APP\\": "src/"
+    }
+  },
+  "license":"MIT",
+  "authors":[
+  		{	
+  			"name":"Ing. Gregorio Bolivar",
+  			"email":"elalconxvii@gmail.com"
+  		}
+  ],
+  "require": {
+    "php": "^7.0",
+    "monolog/monolog": "^1.17",
+    "vlucas/phpdotenv": "^2.4",
+    "catfan/medoo": "^1.5",
+    "twig/twig": "2.0",
+    "bramus/router": "~1.3"
+  }
+}

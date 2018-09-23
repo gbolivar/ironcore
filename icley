@@ -1,0 +1,8 @@
+#!/usr/bin/php
+<?php
+require 'vendor/autoload.php';
+use IRON\Core\Configuration;
+use IRON\Core\Console\Command;
+$ini = new Command();
+$ini->run()
+?>

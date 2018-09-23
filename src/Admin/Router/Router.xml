@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- #### Router configuration system #### -->
+<route>
+  <link>
+    <name>/</name>
+    <controller>home</controller>
+    <method>runIndex</method>
+    <request>GET</request>
+  </link>
+  <!-- Permite ver el menu -->
+</route>
