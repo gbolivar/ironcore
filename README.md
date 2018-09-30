@@ -12,6 +12,8 @@ Es una estructura de desarrollo basada en MVC, muy cómodo para trabajar basado 
 Así mismo te permite desarrollar aplicaciones de forma más simple ordenada y sin tanta capa de abstracción, se adapta a todo tipo de desarrollo por más compleja que sea, hasta puedes incluir componentes de tercero sin restricciones.
 
 Desarrollo MVC rápido, simple, sin tener que aprender tantas cosas adicionales solo saber las buenas prácticas de desarrollo y patrones de diseños .
+
+### Etiquetas del proyecto
 [![Autor](https://img.shields.io/badge/gbolivar-Autor-brightgreen.svg)](https://gregoriobolivar.com)
 [![IronCore](https://img.shields.io/badge/ironcore-pre--alpha--01-orange.svg?style=flat-square)](https://github.com/gbolivar/ironcore)
 [![Twig](https://img.shields.io/badge/twig-stable-yellow.svg?style=flat-square)](https://twig.symfony.com)
