@@ -1,5 +1,5 @@
 {
-    "icley": {
+    "ironcore": {
         "all": "Variebles comandos:\n App\n   app nombre, Permite crear una aplicación dentro de tu proyecto.\n   app:list, Permite listar las aplicación dentro de tu proyecto.\n   app:public nombre-app, Permite publicar tus css, js, e img en la parte web.\n   app:model nombre-app nombre-modelo, Permite generar el modelo dentro de una aplicación.\n   app:controller nombre-app nombre-controller, Permite generar un controlador dentro de una aplicación.\n   app:crud nombre-app nombre-crud, Permite generar un ABM dentro de una aplicación. \n Command\n   command:app nombre-app command, Permite generar comandos personalizados para uso del terminal.\n   command:app:run nombre-app command, Permite ejecutar comandos personalizados para uso del terminal.\n Cache\n   cache:clean, permite limpiar el cache de las aplicaciónes.\n Server\n   server, permite ejecutar el sistema del servidor interno de php.  \n System\n   system:initialize, permite inicializar el sistema para instalar las tablas y datos necesarios para instalar e sistema.\n   system:refresh, permite refrescar todo el sistema completo, queda el sistema como por primera vez, no es reversible."
     },
     "mensajes": {
@@ -53,7 +53,8 @@
             "get-val-no-existe" : "<center><b>Exepción capturada Core</b>: Error en solicitar el siguiente índice <b>{idx}</b> de tu petición GET valor no existe.</center>",
             "post-val-no-existe" : "<center><b>Exepción capturada Core</b>: Error en solicitar el siguiente índice <b>{idx}</b> de tu petición POST valor no existe.",
             "ruta-base-no-cumple" : "<center><b>Exepción capturada Core</b>: Error en valor es necesario en la entidad <b>{entidad}</b> del perfil <b>{perfil}</b>, <br>el campo ruta es necesario agregar basado en este criterio (App:RutaDireccionar), ejempllo:Admin:urlWeb.",
-            "error-index-rura" : "<center><b>Exepción capturada Core</b>: Error la aplicación <b>{apps}</b> que estas tratando de obtener los valores del objeto en app.ini <br> no existe revisar el registro o el archivo de configuración"
+            "error-index-rura" : "<center><b>Exepción capturada Core</b>: Error la aplicación <b>{apps}</b> que estas tratando de obtener los valores del objeto en app.ini <br> no existe revisar el registro o el archivo de configuración",
+            "error-twig-path":"<center><b>Exepción capturada cargando Twig</b>: Error la aplicación <b>{apps}</b> que estas tratando de obtener los datos de la carpeta <b>{path}</b> donde esta la plantilla twig no existe, verificar el directorio si existe la carpeta <b>{dir}</b>"
         }
 
     }

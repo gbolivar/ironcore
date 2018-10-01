@@ -21,7 +21,7 @@ class Cache
         $Commun = new  All();
         $tmp = $this->pathapp;
         $list = array_diff(scandir($tmp), array('..', '.'));
-        $msj=Interprete::getMsjConsole('Cache','cache-clean');
+        $msj=PreInterprete::getMsjConsoleInterno('Cache','cache-clean');
         $item = array();
         if(count($list)==1){
             $ruta = $tmp.implode($list).DIRECTORY_SEPARATOR.'Cache'.DIRECTORY_SEPARATOR.'System';

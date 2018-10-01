@@ -8,7 +8,7 @@ use IRON\Core\Commun\All;
  * @created Date: 30/08/2017
  * @version: 0.1
  */
-class ServerInterno
+class ServerInternoIron
 {
     public $active;
     public $host;
@@ -31,11 +31,12 @@ class ServerInterno
             $p=8000;
         }
         $this->comando =  'php -S '.$host.':'.$p.' -t '.All::PATH_SERVE.' ';
-        $msj=Interprete::getMsjConsole($this->active,'server-start');
+        $msj=PreInterprete::getMsjConsoleInterno($this->active,'server-start');
         $fwv=All::FW.' - '.All::VERSION;
         $fwv.="\n \n";
-        //die($this->comando);
-        echo $fwv.All::mergeTaps($msj,array('host'=>$host,'port'=>$p));
-        system($this->comando);
+        $menj = $fwv.All::mergeTaps($msj,array('host'=>$host,'port'=>$p));
+        print($menj);
+        $t = system($this->comando);
+        return $t;
     }
 }

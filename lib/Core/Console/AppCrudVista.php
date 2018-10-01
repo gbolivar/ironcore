@@ -101,7 +101,7 @@ class AppCrudVista extends App
             // Verificar si existe el controllador de lo contrario se va a generar en el momento
             $archivoController = $rutaApp.All::APP_CONTR.DIRECTORY_SEPARATOR."".$entidad."Controller.php";
             if (file_exists($archivoController)) {
-                $msj=Interprete::getMsjConsole($this->active,'app:crud-existe');
+                $msj=PreInterprete::getMsjConsoleInterno($this->active,'app:crud-existe');
             }else{
                 self::createFileReadControllerCRUD($archivoController,$this->app,$entidad,$campos,$rutaVistaD);
             }
@@ -109,7 +109,7 @@ class AppCrudVista extends App
             // Verificar si existe modelo de lo contrario se genera en el momento
             $archivoModel = $rutaApp.All::APP_MODEL.DIRECTORY_SEPARATOR."".$entidad."Model.php";
             if (file_exists($archivoModel)) {
-                $msj=Interprete::getMsjConsole($this->active,'app:crud-existe');
+                $msj=PreInterprete::getMsjConsoleInterno($this->active,'app:crud-existe');
             }else{
                self::createFileModelCRUD($archivoModel,$this->app,$entidad,$campRealEnti);
             }
@@ -118,7 +118,7 @@ class AppCrudVista extends App
             $archivoRoute = $rutaApp.All::APP_ROUTE.DIRECTORY_SEPARATOR."Router.xml";
             $existe = self::existsRuta($archivoRoute,$crud);
             if ($existe) {
-                $msj=Interprete::getMsjConsole($this->active,'app:crud-existe');
+                $msj=PreInterprete::getMsjConsoleInterno($this->active,'app:crud-existe');
             }else{
                 self::createNewRutaXmlCRUD($archivoRoute,$crud,$tabla);
             }
@@ -152,7 +152,7 @@ class AppCrudVista extends App
             self::createFileViewJsonMascaras($fileViewJsonMascaras, $mascaras);
 
 
-            $msj=Interprete::getMsjConsole($this->active,'app:crud-creado');
+            $msj=PreInterprete::getMsjConsoleInterno($this->active,'app:crud-creado');
 
         }
         $msj=All::mergeTaps($msj,array('app'=>$this->app,'controller'=>$entidad));

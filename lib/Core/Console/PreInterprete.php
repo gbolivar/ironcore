@@ -8,7 +8,7 @@ use IRON\Core\Commun\All;
  * @Creation Date: 22/08/2017
  * @version: 0.2
  */
-class Interprete
+class PreInterprete
 {
         public $labmenu, $paser, $config;
         function __construct()
@@ -59,7 +59,7 @@ class Interprete
          * @param string $subIndex sub indice del mensaje
          * @return string
          */
-        static public function getMsjConsole($index,$subIndex)
+        static public function getMsjConsoleInterno($index,$subIndex)
         {
            try{
             $response=self::getConfigMaster('mensajes',$index);
@@ -86,12 +86,11 @@ class Interprete
         {
             $fwv=All::FW.' - '.All::VERSION;
             $fwv.="\n \n";
-            $item=count($this->labmenu);
+            $item=@count($this->labmenu);
             if($item==1){
                 $fwv.= $this->labmenu;
 
             }else{
-
                 foreach ($this->labmenu as  $value) {
                     $fwv.= $value;
                     $fwv.="\n";
@@ -107,7 +106,7 @@ class Interprete
          */
         public static function getJsonConfig()
         {
-            $response = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'doc'.DIRECTORY_SEPARATOR.All::IDM.DIRECTORY_SEPARATOR.'icley.json');
+            $response = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'doc'.DIRECTORY_SEPARATOR.All::IDM.DIRECTORY_SEPARATOR.'core.json');
             return $response;
         }
 
@@ -123,10 +122,12 @@ class Interprete
 
         /**
          * Mostrar el logo en ascii
+         * @see web de generacion de ASCII url('https://www.ascii-art-generator.org/es.html')
          * @return devolver el logo en ascc
          */
         public static function getLogoAscii()
         {
+
             $response = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'doc'.DIRECTORY_SEPARATOR.'banner.txt');
             return $response;
         }

@@ -35,13 +35,13 @@ class AppCrud extends App
             $controller = All::upperCase($crud);
             $ruta =  $ruta.DIRECTORY_SEPARATOR.$controller.'Controller.php';
             if (file_exists($ruta)) {
-                $msj=Interprete::getMsjConsole($this->active,'app:crud-existe');
+                $msj=PreInterprete::getMsjConsoleInterno($this->active,'app:crud-existe');
             }else{
                 $ruta = $this->pathapp.$app;
                 self::createFileReadControllerCRUD($ruta,$app,$controller);
                 self::createNewRutaXmlCRUD($ruta,$app,$controller);
                 self::createFileModelCRUD($ruta,$app,$controller);
-                $msj=Interprete::getMsjConsole($this->active,'app:crud-creado');
+                $msj=PreInterprete::getMsjConsoleInterno($this->active,'app:crud-creado');
             }
             $msj=All::mergeTaps($msj,array('app'=>$this->app,'controller'=>$controller));
         }

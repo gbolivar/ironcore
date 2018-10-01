@@ -26,7 +26,7 @@ class System extends Base
      */
     public function cleanSystemRefresh() : void
     {
-         $msj=Interprete::getMsjConsole('Commands','system-refresh-init');
+         $msj=PreInterprete::getMsjConsoleInterno('Commands','system-refresh-init');
          $msj=All::mergeTaps($msj,array());
          $this->logInfo("##### ".$msj." #####"); echo $msj;
 
@@ -45,7 +45,7 @@ class System extends Base
                      if($value->TABLE_NAME == $value2['tabla']){
                          // Permite verificar si la tabla se le hace truncate
                          $msj = '';
-                         $msj=Interprete::getMsjConsole('Commands','system-refresh');
+                         $msj=PreInterprete::getMsjConsoleInterno('Commands','system-refresh');
                          if($value2['truncar']=='SI'){
                              $msj=All::mergeTaps($msj,array('tabla'=>$value2['tabla'],'truncate'=>$value2['truncar']));
                              $this->logInfo($msj); echo $msj;
@@ -60,7 +60,7 @@ class System extends Base
 
                  $tempValue = self::getValidateTableNoExistente($value->TABLE_NAME,$elemento);
                  if($tempValue){
-                     $msj=Interprete::getMsjConsole('Commands','system-refresh-eliminar');
+                     $msj=PreInterprete::getMsjConsoleInterno('Commands','system-refresh-eliminar');
                      $msj=All::mergeTaps($msj,array('tabla'=>$value->TABLE_NAME));
                      $this->logInfo($msj); echo $msj;
                      self::removeFileModel($value->TABLE_NAME);
@@ -150,11 +150,11 @@ class System extends Base
             if (file_exists($tmp)) {
                 All::mkddir($fileCambTmp);
                 rename($tmp,$fileCambTmp.DIRECTORY_SEPARATOR.$tmpFile);
-                $msj=Interprete::getMsjConsole('Commands','system-refresh-existe');
+                $msj=PreInterprete::getMsjConsoleInterno('Commands','system-refresh-existe');
                 $msj=All::mergeTaps($msj,array('file'=>$tmp));
                 $this->logInfo($msj);
             }else{
-                $msj=Interprete::getMsjConsole('Commands','system-refresh-no-existe');
+                $msj=PreInterprete::getMsjConsoleInterno('Commands','system-refresh-no-existe');
                 $msj=All::mergeTaps($msj,array('file'=>$tmp));
                 $this->logError($msj);
             }

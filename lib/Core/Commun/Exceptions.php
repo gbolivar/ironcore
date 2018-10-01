@@ -1,6 +1,6 @@
 <?php
 namespace IRON\Core\Commun;
-use IRON\Core\Console\Interprete;
+use IRON\Core\Console\PreInterprete;
 
 /**
  * Clase encargada de gestionar todas las Exceptions del sistema con el objetivo de implementar
@@ -24,13 +24,13 @@ class Exceptions extends \Error implements \Throwable
      */
         static public function getMsjException($index, $subIndex, $obj = array())
         {
-            $response=Interprete::getConfigMaster('exepciones',$index);
+            $response=PreInterprete::getConfigMaster('exepciones',$index);
             $msj = $response->$subIndex;
             $search = (bool)preg_match('/[[a-z0-9]]/',$msj);
             if($search){
                 $text = explode('[',$msj);
                 $datos = str_replace(']',' ', $text[1]);
-                $files = Interprete::getDirDoc().trim($datos).'.html';
+                $files = PreInterprete::getDirDoc().trim($datos).'.html';
                 $htm = file_get_contents($files);
                 $msj = $text[0]."<br>".$htm;
             }

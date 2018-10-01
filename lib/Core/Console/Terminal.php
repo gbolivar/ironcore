@@ -11,7 +11,7 @@ use IRON\Core\Commun\{All};
  * @version: 4.2
  */
 
-class Command extends Integrate
+class Terminal extends DispCommands
 {
 	public $term;
 	static $src;
@@ -22,7 +22,7 @@ class Command extends Integrate
 	public function run()
 	{	
         	$this->term = $_SERVER['argv'];
-        	$obj = new Integrate();
+        	$obj = new DispCommands();
             $obj->arguments($this->term);
 	}
 
@@ -35,12 +35,14 @@ class Command extends Integrate
      */
      public static function runCommands($app, $comand)
     {
-        $comd = All::upperCase($comand).'Commands';
+        $class = __CLASS__;
+        $comd = All::upperCase($comand). $class;
         $src = All::DIR_SRC.All::upperCase($app).All::APP_COMMAND.DIRECTORY_SEPARATOR.$comd.'.php';
+        die($src);
         try {
             if (file_exists($src)) {
                 include_once($src);
-                $namespaceCommand = '\APP\\' . All::upperCase($app) . '\Commands\\' . $comd . '::main';
+                $namespaceCommand = '\APP\\' . All::upperCase($app) . '\\'. $class.'\\' . $comd . '::main';
                 $namespaceCommand();
                 die('Fin del procesi');
             } else {

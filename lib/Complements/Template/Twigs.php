@@ -1,7 +1,8 @@
 <?php 
 namespace IRON\Complements\Template;
-use IRON\Core\Commun\All;
+use IRON\Core\Commun\{All,Logs};
 use IRON\Core\Store\Cache;
+use IRON\Core\Console\PreInterprete;
 
 /**
  * Permite gestionar las vistas del contralador con el componente twig
@@ -14,6 +15,7 @@ use IRON\Core\Store\Cache;
  */
 class Twigs 
 {
+        use Logs;
         public $cache;
         public $item;
         public $html;
@@ -21,10 +23,16 @@ class Twigs
         public $loader;
 
         public function __construct()
-        {
+        {       
+
+            try {
                 $this->cache = new Cache();
                 $this->html;
                 $tmGen = All::DIR_THEME.$this->cache->get('dir_theme');
+
+                if(!file_exists($tmGen)){
+                    throw new \TypeError("Error Processing Request", 1);
+                }
                 $tmApp = All::DIR_SRC.APP.All::APP_VIEWS;
                 $patCh = All::DIR_SRC.APP.All::APP_CACHE;
 
@@ -37,6 +45,14 @@ class Twigs
                 $this->twig->addExtension(new \Twig_Extension_Debug());
 
                 return $this;
+            } catch (\TypeError $e) {
+                // Exception de error de mensaje del core del sistema 
+                $tmpP = str_replace('lib\Core\Commun\..\..\..', '', $tmGen);
+                $obj = array('apps'=>APP,'path'=>$tmpP,'dir'=>$this->cache->get('dir_theme'));
+                $msj = All::getMsjException('Core', 'error-twig-path',$obj);
+                $this->logError($msj);
+                die($msj);
+            }
         }
 
         /**

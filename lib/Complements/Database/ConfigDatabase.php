@@ -1,10 +1,10 @@
 <?php
 namespace IRON\Complements\Database;
 /**
- * Configuracion de las conexiones bb IRON 1
- * @propiedad: IRON 1
+ * Configuracion de las conexiones bb IRON V1
+ * @propiedad: IRON V1
  * @utor: Gregorio Bolivar <elalconxvii@gmail.com>
- * @created: 30/09/2018
+ * @created: 01/10/2018
  * @version: 1.0
  */ 
 

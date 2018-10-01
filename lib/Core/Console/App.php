@@ -56,9 +56,9 @@ class App
                         self::createDirView($ruta);
                         self::createFileViewHome($ruta,$app);
                         self::createNewConfigItemApp($app);
-                        $msj=Interprete::getMsjConsole($this->active,'app-create');
+                        $msj=PreInterprete::getMsjConsoleInterno($this->active,'app-create');
                 }else{
-                        $msj=Interprete::getMsjConsole($this->active,'app-existe');
+                        $msj=PreInterprete::getMsjConsoleInterno($this->active,'app-existe');
                 }
                  $msj=All::mergeTaps($msj,array('name'=>$name));
                 return $msj;
@@ -79,7 +79,7 @@ class App
                 self::createDirCommand($ruta);
                 self::createFileCommands($app,$ruta,$comand);
 
-                $msj=Interprete::getMsjConsole('Commands','command-create');
+                $msj=PreInterprete::getMsjConsoleInterno('Commands','command-create');
                 $msj=All::mergeTaps($msj,array('name'=>$comand,'apps'=>$app));
                 return $msj;
             }
@@ -157,11 +157,11 @@ class App
                 $modelo = All::upperCase($modelo);
                 $ruta =  $ruta.DIRECTORY_SEPARATOR.$modelo.'.php';
                 if (file_exists($ruta)) {
-                    $msj=Interprete::getMsjConsole($this->active,'app:model-existe');
+                    $msj=PreInterprete::getMsjConsoleInterno($this->active,'app:model-existe');
                 }else{
                     // Crear elementos
                     self::createFileModel($app,$modelo);
-                    $msj=Interprete::getMsjConsole($this->active,'app:model-create');
+                    $msj=PreInterprete::getMsjConsoleInterno($this->active,'app:model-create');
                 }
                 $msj=All::mergeTaps($msj,array('app'=>$this->app,'modelo'=>$modelo));
             }
@@ -186,13 +186,13 @@ class App
             $controller = All::upperCase($controller);
             $ruta =  $ruta.DIRECTORY_SEPARATOR.$controller.'Controller.php';
             if (file_exists($ruta)) {
-                $msj=Interprete::getMsjConsole($this->active,'app:controller-existe');
+                $msj=PreInterprete::getMsjConsoleInterno($this->active,'app:controller-existe');
             }else{
                 // Crear elementos
                 //createFileReadController($ruta, $app , $controller = 'Home')
                 $ruta = $this->pathapp.$app;
                 self::createFileReadController($ruta,$app,$controller);
-                $msj=Interprete::getMsjConsole($this->active,'app:controller-create');
+                $msj=PreInterprete::getMsjConsoleInterno($this->active,'app:controller-create');
             }
             $msj=All::mergeTaps($msj,array('app'=>$this->app,'controller'=>$controller));
         }
@@ -206,7 +206,7 @@ class App
         public function showApps()
         {
             $list = self::showAppsList();
-            $msj=Interprete::getMsjConsole($this->active,'app:list');
+            $msj=PreInterprete::getMsjConsoleInterno($this->active,'app:list');
             $item = array();
             
             if(count($list)==1){
