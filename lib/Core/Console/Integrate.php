@@ -1,5 +1,6 @@
 <?php
 namespace IRON\Core\Console;
+use IRON\Core\Commun\All;
 
 /**
  * Permite integrar un conjunto de funcionalidades del console de sistema 
@@ -22,17 +23,14 @@ class Integrate
             try{
 
                 $v = count(@$argv);
-                print_r($argv);
                 // Optiones del menu con todos los valores del menu
                 $inpre = new Interprete();
-
-                if($v==1 AND ($argv[0]=='icley' OR $argv[0]='.\icley'))
+                $command = str_replace('.\\','',$argv[0]);
+                if($v==1 AND ($command==All::APP_VALOR_COMMAND))
                 {
                     // Limpiando los valores del arreglo principal que sea enviado hornero o .\hornero
                     $valor = str_replace('.\\','',$argv[0]);
-
-                    $vist = $inpre->getConfigJson($valor,'all');
-
+                    $vist = $inpre->getConfigJson($command,'all');
                     $inpre->setValor($vist);
                 }
                 elseif ($v==3 AND $argv[1]=='app' AND !empty($argv[2])) 
@@ -44,8 +42,8 @@ class Integrate
                 elseif ($v==4 AND $argv[1]=='app:public' AND !empty($argv[2]))
                 {
                     $link = new Symbolico();
-                    $link->filesWebPublic($argv[2]);
-                    die();
+                    $vist=$link->filesWebPublic($argv[2]);
+                    $inpre->setValor($vist);
                 }
                 elseif ($v==4 AND $argv[1]=='command:app' AND !empty($argv[2]) AND !empty($argv[3]))
                 {
@@ -87,7 +85,8 @@ class Integrate
                 {
                     $cache = new Cache();
                     $msj = $cache->cleanCacheApps();
-                    $inpre->setValor($msj);
+                    var_dump($msj);
+                    //$inpre->setValor($msj);
                 }
                 elseif(($v>=2 AND $v<=6 AND $argv[1]=='server') OR @$argv[2]=='--host' OR @$argv[4]=='--port')
                 {
@@ -98,13 +97,13 @@ class Integrate
                 {
                     $temp= new System();
                     $msj = $temp->cleanSystemInitialize();
-                    //$inpre->setValor($msj);
+                    $inpre->setValor($msj);
                 }
                 elseif ($v==2 AND $argv[1]=='system:refresh')
                 {
                     $temp= new System();
                     $msj = $temp->cleanSystemRefresh();
-                    //$inpre->setValor($msj);
+                    $inpre->setValor($msj);
                 }
                 else
                 {

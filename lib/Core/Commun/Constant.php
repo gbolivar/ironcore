@@ -31,7 +31,7 @@ interface Constant
     const DIR_WEB = Constant::DIR_INT.'web'.DIRECTORY_SEPARATOR;
 
     // Const Version del la Arquitectura
-    const VERSION = "1";
+    const VERSION = "V1";
     const FW = "IRON";
     const IDM = "es";
 
@@ -45,6 +45,9 @@ interface Constant
 
     // Const Command
     const APP_COMMAND = DIRECTORY_SEPARATOR.'Command';
+
+    // Const Valor Command
+     const APP_VALOR_COMMAND = 'ironcore';
 
     // Const Model
     const APP_MODEL = DIRECTORY_SEPARATOR.'Model';
